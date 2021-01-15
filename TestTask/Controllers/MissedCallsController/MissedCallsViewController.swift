@@ -35,7 +35,7 @@ extension MissedCallsViewController: UITableViewDelegate {
 extension MissedCallsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        15
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -56,8 +56,11 @@ extension MissedCallsViewController: UITableViewDataSource {
         cell.shadowView.layer.shadowOpacity = 0.1
         cell.shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
+        if cell.contactNameLabel.text?.count == 0 {
+            cell.contactNameLabel.isHidden = true
+        }
+        
         return cell
     }
-    
     
 }
