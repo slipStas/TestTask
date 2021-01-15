@@ -16,11 +16,14 @@ class MissedCallsViewController: UIViewController {
         }
     }
     
-    let viewModel = MissedCallsViewModel()
+    var viewModel: (MissedCallsViewModelInputs & MissedCallsViewModelOutputs)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        viewModel = MissedCallsViewModel(someData: "www")
+        
+        viewModel?.missedCallsDelegate = self
     }
 
 }
@@ -29,6 +32,7 @@ extension MissedCallsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel?.tapCell()
     }
 }
 
@@ -63,4 +67,12 @@ extension MissedCallsViewController: UITableViewDataSource {
         return cell
     }
     
+}
+
+extension MissedCallsViewController: MissedCallsDelegate {
+    func goToInfoVC(someData: String) throws {
+        let infoAboutViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InfoAboutCallViewController") as! InfoAboutCallViewController
+        infoAboutViewController.modalPresentationStyle = .fullScreen
+        self.present(infoAboutViewController, animated: true, completion: nil)
+    }
 }

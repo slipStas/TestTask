@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E1177A125B1E3DD009C2E32 /* MissedCallsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E1177A025B1E3DD009C2E32 /* MissedCallsDelegate.swift */; };
 		8E3ED85925B1A7760075986D /* MissedCallsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */; };
 		8E3ED85D25B1B45E0075986D /* InfoAboutCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED85C25B1B45E0075986D /* InfoAboutCallViewController.swift */; };
 		8E3ED86125B1B4750075986D /* InfoAboutCallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED86025B1B4750075986D /* InfoAboutCallViewModel.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E1177A025B1E3DD009C2E32 /* MissedCallsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallsDelegate.swift; sourceTree = "<group>"; };
 		8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallsTableViewCell.swift; sourceTree = "<group>"; };
 		8E3ED85C25B1B45E0075986D /* InfoAboutCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutCallViewController.swift; sourceTree = "<group>"; };
 		8E3ED86025B1B4750075986D /* InfoAboutCallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutCallViewModel.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				8E9A709225B18E1D007EA841 /* MissedCallsViewController.swift */,
 				8E7C18E425B1A4FF002838C2 /* MissedCallsViewModel.swift */,
 				8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */,
+				8E1177A025B1E3DD009C2E32 /* MissedCallsDelegate.swift */,
 			);
 			path = MissedCallsController;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			files = (
 				8E3ED85D25B1B45E0075986D /* InfoAboutCallViewController.swift in Sources */,
 				8E3ED85925B1A7760075986D /* MissedCallsTableViewCell.swift in Sources */,
+				8E1177A125B1E3DD009C2E32 /* MissedCallsDelegate.swift in Sources */,
 				8E9A709325B18E1D007EA841 /* MissedCallsViewController.swift in Sources */,
 				8E3ED86125B1B4750075986D /* InfoAboutCallViewModel.swift in Sources */,
 				8E7C18E525B1A4FF002838C2 /* MissedCallsViewModel.swift in Sources */,

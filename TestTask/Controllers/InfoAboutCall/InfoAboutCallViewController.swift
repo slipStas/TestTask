@@ -9,6 +9,11 @@ import UIKit
 
 class InfoAboutCallViewController: UIViewController {
 
+    enum AnimationStatus {
+        case small
+        case full
+    }
+    
     @IBOutlet weak var backgroundShadowView: UIView!
     @IBOutlet weak var smallBackgroundView: UIView!
     @IBOutlet weak var shadowView: UIView!
@@ -24,13 +29,26 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var businessNumberLabel: UILabel!
     @IBOutlet weak var swipeIndicatorView: UIView!
     
+    var animationStatus = AnimationStatus.full
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupViews()
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+                
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(showView))
+            swipeDown.direction = .down
+            self.backgroundView.addGestureRecognizer(swipeDown)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(hideView))
+        swipeUp.direction = .up
+            self.backgroundView.addGestureRecognizer(swipeUp)
+    }
+    
     func setupViews() {
         
         smallBackgroundView.backgroundColor = .white
@@ -58,7 +76,42 @@ class InfoAboutCallViewController: UIViewController {
         businessLabel.text = "Business number"
         businessNameLabel.text = "Store"
         businessNumberLabel.text = "+1 888 123-5555"
-        
     }
     
+    @objc func hideView() {
+        print("hide view")
+        animateHideView()
+        animationStatus = .small
+    }
+    
+    @objc func showView() {
+        print("show view")
+        animateShowView()
+        animationStatus = .full
+    }
+    
+    func animateHideView() {
+        switch animationStatus {
+        case .full:
+            UIView.animate(withDuration: 0.3) {
+                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: -10, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
+                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: -10, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+            }
+        default:
+            break
+        }
+    }
+    
+    func animateShowView() {
+        
+        switch animationStatus {
+        case .small:
+            UIView.animate(withDuration: 0.3) {
+                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: 74, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
+                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: 74, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+            }
+        default:
+            break
+        }
+    }
 }
