@@ -30,6 +30,7 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var swipeIndicatorView: UIView!
     
     var animationStatus = AnimationStatus.full
+    var calls: CallModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()

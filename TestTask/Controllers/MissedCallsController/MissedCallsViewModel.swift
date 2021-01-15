@@ -8,16 +8,23 @@
 import Foundation
 
 protocol MissedCallsViewModelInputs {
-    
-    func tapCell()
     var missedCallsDelegate: MissedCallsDelegate? {get set}
+    func tapCell()
+    func loadDataFromServer()
 }
 
 protocol MissedCallsViewModelOutputs {
     
+    var calls: CallModel? {get set}
 }
 
 class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutputs {
+    
+    var calls: CallModel?
+    
+    func loadDataFromServer() {
+        
+    }
     
     public weak var missedCallsDelegate: MissedCallsDelegate?
     
@@ -29,6 +36,6 @@ class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutp
     
     func tapCell() {
         print("cell was tapped")
-        try? self.missedCallsDelegate?.goToInfoVC(someData: "some data")
+        try? self.missedCallsDelegate?.goToInfoVC(someData: calls)
     }
 }

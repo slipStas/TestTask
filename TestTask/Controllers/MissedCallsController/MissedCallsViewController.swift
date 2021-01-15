@@ -66,12 +66,13 @@ extension MissedCallsViewController: UITableViewDataSource {
         
         return cell
     }
-    
 }
 
 extension MissedCallsViewController: MissedCallsDelegate {
-    func goToInfoVC(someData: String) throws {
+    
+    func goToInfoVC(someData: CallModel?) throws {
         let infoAboutViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InfoAboutCallViewController") as! InfoAboutCallViewController
+        infoAboutViewController.calls = someData
         infoAboutViewController.modalPresentationStyle = .fullScreen
         self.present(infoAboutViewController, animated: true, completion: nil)
     }
