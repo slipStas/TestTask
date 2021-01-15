@@ -31,7 +31,8 @@ class ServerService: ServerServiceProtocol {
                 
                 let calls = try? JSONDecoder().decode(CallModel?.self, from: data)
                 guard let strongCalls = calls else {return}
-                calls?.requests.forEach {print($0.duration)}
+                
+                print("=============load from server=============")
                 completionHandler(strongCalls)
             }.resume()
         }

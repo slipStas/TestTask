@@ -11,25 +11,38 @@ protocol MissedCallsViewModelInputs {
     var missedCallsDelegate: MissedCallsDelegate? {get set}
     func tapCell(index: IndexPath)
     func loadDataFromServer()
+    func saveData()
+    func loadDataFromDevice()
 }
 
 protocol MissedCallsViewModelOutputs {
     
     var calls: CallModel? {get set}
     var newCalls: ((CallModel?) -> Void)? {get set}
+    
 }
 
 class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutputs {
-    
+   
     var calls: CallModel? {
         didSet {
             newCalls?(calls)
+            saveData()
         }
     }
     
     let serverService = ServerService()
+    let careTaker = DataCaretaker()
     
     var newCalls: ((CallModel?) -> Void)?
+    
+    public weak var missedCallsDelegate: MissedCallsDelegate?
+        
+    init(calls: CallModel?, newCalls: ((CallModel?) -> Void)?) {
+        self.calls = calls
+        self.newCalls = newCalls
+        self.newCalls?(calls)
+    }
     
     func loadDataFromServer() {
         serverService.loadDataFromServer { [weak self] newCalls in
@@ -39,12 +52,14 @@ class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutp
         }
     }
     
-    public weak var missedCallsDelegate: MissedCallsDelegate?
-        
-    init(calls: CallModel?, newCalls: ((CallModel?) -> Void)?) {
-        self.calls = calls
-        self.newCalls = newCalls
-        self.newCalls?(calls)
+    func saveData() {
+        try? careTaker.saveCalls(calls: calls)
+        print("data was saved")
+    }
+    
+    func loadDataFromDevice() {
+        guard let results = try? careTaker.loadResult()  else {return}
+        self.calls = results
     }
     
     func tapCell(index: IndexPath) {

@@ -33,7 +33,8 @@ class MissedCallsViewController: UIViewController {
             strongSelf.calls = newCals
         })
         
-        viewModel?.loadDataFromServer()
+        viewModel?.loadDataFromDevice()
+//        viewModel?.loadDataFromServer()
         viewModel?.missedCallsDelegate = self
     }
 
