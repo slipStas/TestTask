@@ -7,8 +7,16 @@
 
 import Foundation
 
+protocol InfoAboutCallViewModelInputs {
+    
+}
 
+protocol InfoAboutCallViewModelOutputs {
+    
+}
 
-class InfoAboutCallViewModel {
+class InfoAboutCallViewModel: InfoAboutCallViewModelInputs, InfoAboutCallViewModelOutputs {
+    
+    // There is no any things that will make in viewModel
     
 }

@@ -30,7 +30,7 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var swipeIndicatorView: UIView!
     
     var animationStatus = AnimationStatus.full
-    var calls: CallModel?
+    var call: Request?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,12 +71,12 @@ class InfoAboutCallViewController: UIViewController {
         viewUnderImage.layer.masksToBounds = true
         viewUnderImage.layer.cornerRadius = 28
         
-        contactNameLabel.text = "Name of contact"
-        contactAddressLabel.text = "+1 917 123-4566"
-        callDurationLabel.text = "08:24"
+        contactNameLabel.text = call?.client.name
+        contactAddressLabel.text = call?.client.address
+        callDurationLabel.text = call?.duration
         businessLabel.text = "Business number"
-        businessNameLabel.text = "Store"
-        businessNumberLabel.text = "+1 888 123-5555"
+        businessNameLabel.text = call?.businessNumber.label
+        businessNumberLabel.text = call?.businessNumber.number
     }
     
     @objc func hideView() {

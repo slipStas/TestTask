@@ -9,15 +9,12 @@ import Foundation
 
 protocol ServerServiceProtocol: class {
     
-    var calls: CallModel? {get set}
-    func loadDataFromServer()
+    func loadDataFromServer(completionHandler: @escaping (CallModel) -> ())
 }
 
 class ServerService: ServerServiceProtocol {
-    
-    var calls: CallModel?
-    
-    func loadDataFromServer() {
+        
+    func loadDataFromServer(completionHandler: @escaping (CallModel) -> ()) {
         DispatchQueue.main.async {
             let configurator = URLSessionConfiguration.default
             let session = URLSession(configuration: configurator)
@@ -33,9 +30,9 @@ class ServerService: ServerServiceProtocol {
                 guard let data = data else {return}
                 
                 let calls = try? JSONDecoder().decode(CallModel?.self, from: data)
-                
-                self.calls = calls
-                
+                guard let strongCalls = calls else {return}
+                calls?.requests.forEach {print($0.duration)}
+                completionHandler(strongCalls)
             }.resume()
         }
     }

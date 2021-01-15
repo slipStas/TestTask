@@ -17,12 +17,23 @@ class MissedCallsViewController: UIViewController {
     }
     
     var viewModel: (MissedCallsViewModelInputs & MissedCallsViewModelOutputs)?
+    var calls: CallModel? {
+        didSet {
+            DispatchQueue.main.async {
+                self.missedCallsTableView.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = MissedCallsViewModel(someData: "www")
+        viewModel = MissedCallsViewModel(calls: calls, newCalls: { [weak self] newCals in
+            guard let strongSelf = self else {return}
+            strongSelf.calls = newCals
+        })
         
+        viewModel?.loadDataFromServer()
         viewModel?.missedCallsDelegate = self
     }
 
@@ -32,24 +43,24 @@ extension MissedCallsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel?.tapCell()
+        viewModel?.tapCell(index: indexPath)
     }
 }
 
 extension MissedCallsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        15
+        self.calls?.requests.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = missedCallsTableView.dequeueReusableCell(withIdentifier: "missedCalsCell", for: indexPath) as! MissedCallsTableViewCell
         
         cell.callIconImageView.image = UIImage(named: "call inbound missed")
-        cell.callDurationLabel.text = "00:14"
-        cell.contactAddressLabel.text = "+1 800 123-4567"
-        cell.contactNameLabel.text = "Name of contact"
-        cell.dateOfCallLabel.text = "10:21 AM"
+        cell.callDurationLabel.text = self.calls?.requests[indexPath.row].duration
+        cell.contactAddressLabel.text = self.calls?.requests[indexPath.row].client.address
+        cell.contactNameLabel.text = self.calls?.requests[indexPath.row].client.name
+        cell.dateOfCallLabel.text = self.calls?.requests[indexPath.row].created
         
         cell.dataView.layer.masksToBounds = true
         cell.dataView.layer.cornerRadius = 8
@@ -70,9 +81,9 @@ extension MissedCallsViewController: UITableViewDataSource {
 
 extension MissedCallsViewController: MissedCallsDelegate {
     
-    func goToInfoVC(someData: CallModel?) throws {
+    func goToInfoVC(someData: Request?) throws {
         let infoAboutViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "InfoAboutCallViewController") as! InfoAboutCallViewController
-        infoAboutViewController.calls = someData
+        infoAboutViewController.call = someData
         infoAboutViewController.modalPresentationStyle = .fullScreen
         self.present(infoAboutViewController, animated: true, completion: nil)
     }

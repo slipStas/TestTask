@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MissedCallsDelegate : AnyObject {
-    func goToInfoVC(someData: CallModel?) throws
+    func goToInfoVC(someData: Request?) throws
 }
