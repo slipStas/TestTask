@@ -7,19 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E3ED85925B1A7760075986D /* MissedCallsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */; };
+		8E3ED85D25B1B45E0075986D /* InfoAboutCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED85C25B1B45E0075986D /* InfoAboutCallViewController.swift */; };
+		8E3ED86125B1B4750075986D /* InfoAboutCallViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3ED86025B1B4750075986D /* InfoAboutCallViewModel.swift */; };
+		8E7C18E525B1A4FF002838C2 /* MissedCallsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7C18E425B1A4FF002838C2 /* MissedCallsViewModel.swift */; };
 		8E9A708F25B18E1D007EA841 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9A708E25B18E1D007EA841 /* AppDelegate.swift */; };
 		8E9A709125B18E1D007EA841 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9A709025B18E1D007EA841 /* SceneDelegate.swift */; };
-		8E9A709325B18E1D007EA841 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9A709225B18E1D007EA841 /* ViewController.swift */; };
+		8E9A709325B18E1D007EA841 /* MissedCallsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E9A709225B18E1D007EA841 /* MissedCallsViewController.swift */; };
 		8E9A709625B18E1D007EA841 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A709425B18E1D007EA841 /* Main.storyboard */; };
 		8E9A709825B18E20007EA841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A709725B18E20007EA841 /* Assets.xcassets */; };
 		8E9A709B25B18E20007EA841 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8E9A709925B18E20007EA841 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallsTableViewCell.swift; sourceTree = "<group>"; };
+		8E3ED85C25B1B45E0075986D /* InfoAboutCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutCallViewController.swift; sourceTree = "<group>"; };
+		8E3ED86025B1B4750075986D /* InfoAboutCallViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAboutCallViewModel.swift; sourceTree = "<group>"; };
+		8E7C18E425B1A4FF002838C2 /* MissedCallsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallsViewModel.swift; sourceTree = "<group>"; };
 		8E9A708B25B18E1D007EA841 /* TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E9A708E25B18E1D007EA841 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E9A709025B18E1D007EA841 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8E9A709225B18E1D007EA841 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8E9A709225B18E1D007EA841 /* MissedCallsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissedCallsViewController.swift; sourceTree = "<group>"; };
 		8E9A709525B18E1D007EA841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8E9A709725B18E20007EA841 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8E9A709A25B18E20007EA841 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -37,6 +45,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E3ED85B25B1B4030075986D /* InfoAboutCall */ = {
+			isa = PBXGroup;
+			children = (
+				8E3ED85C25B1B45E0075986D /* InfoAboutCallViewController.swift */,
+				8E3ED86025B1B4750075986D /* InfoAboutCallViewModel.swift */,
+			);
+			path = InfoAboutCall;
+			sourceTree = "<group>";
+		};
+		8E7C18E725B1A57F002838C2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E7C18E825B1A591002838C2 /* MissedCallsController */,
+				8E3ED85B25B1B4030075986D /* InfoAboutCall */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8E7C18E825B1A591002838C2 /* MissedCallsController */ = {
+			isa = PBXGroup;
+			children = (
+				8E9A709225B18E1D007EA841 /* MissedCallsViewController.swift */,
+				8E7C18E425B1A4FF002838C2 /* MissedCallsViewModel.swift */,
+				8E3ED85825B1A7760075986D /* MissedCallsTableViewCell.swift */,
+			);
+			path = MissedCallsController;
+			sourceTree = "<group>";
+		};
+		8E7C18E925B1A5AF002838C2 /* Servises */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Servises;
+			sourceTree = "<group>";
+		};
 		8E9A708225B18E1D007EA841 = {
 			isa = PBXGroup;
 			children = (
@@ -56,9 +99,10 @@
 		8E9A708D25B18E1D007EA841 /* TestTask */ = {
 			isa = PBXGroup;
 			children = (
+				8E7C18E925B1A5AF002838C2 /* Servises */,
+				8E7C18E725B1A57F002838C2 /* Controllers */,
 				8E9A708E25B18E1D007EA841 /* AppDelegate.swift */,
 				8E9A709025B18E1D007EA841 /* SceneDelegate.swift */,
-				8E9A709225B18E1D007EA841 /* ViewController.swift */,
 				8E9A709425B18E1D007EA841 /* Main.storyboard */,
 				8E9A709725B18E20007EA841 /* Assets.xcassets */,
 				8E9A709925B18E20007EA841 /* LaunchScreen.storyboard */,
@@ -137,7 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E9A709325B18E1D007EA841 /* ViewController.swift in Sources */,
+				8E3ED85D25B1B45E0075986D /* InfoAboutCallViewController.swift in Sources */,
+				8E3ED85925B1A7760075986D /* MissedCallsTableViewCell.swift in Sources */,
+				8E9A709325B18E1D007EA841 /* MissedCallsViewController.swift in Sources */,
+				8E3ED86125B1B4750075986D /* InfoAboutCallViewModel.swift in Sources */,
+				8E7C18E525B1A4FF002838C2 /* MissedCallsViewModel.swift in Sources */,
 				8E9A708F25B18E1D007EA841 /* AppDelegate.swift in Sources */,
 				8E9A709125B18E1D007EA841 /* SceneDelegate.swift in Sources */,
 			);
