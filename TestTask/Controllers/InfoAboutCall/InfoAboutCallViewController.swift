@@ -28,6 +28,7 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var businessNumberLabel: UILabel!
     @IBOutlet weak var swipeIndicatorView: UIView!
+    @IBOutlet weak var animationConstraint: NSLayoutConstraint!
     
     var viewModel: (InfoAboutCallViewModelInputs & InfoAboutCallViewModelOutputs)?
     
@@ -113,8 +114,9 @@ class InfoAboutCallViewController: UIViewController {
         switch animationStatus {
         case .full:
             UIView.animate(withDuration: 0.3) {
-                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: -10, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
-                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: -10, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+                
+                self.animationConstraint.constant = 10
+                self.view.layoutIfNeeded()
             }
         default:
             break
@@ -126,8 +128,9 @@ class InfoAboutCallViewController: UIViewController {
         switch animationStatus {
         case .small:
             UIView.animate(withDuration: 0.3) {
-                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: 74, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
-                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: 74, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+                
+                self.animationConstraint.constant = 85
+                self.view.layoutIfNeeded()
             }
         default:
             break
