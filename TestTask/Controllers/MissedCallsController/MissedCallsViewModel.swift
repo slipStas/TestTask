@@ -13,6 +13,8 @@ protocol MissedCallsViewModelInputs {
     func loadDataFromServer()
     func saveData()
     func loadDataFromDevice()
+    func changeNumber(string: String) -> String
+    func changeDuration(duration: String) -> String
 }
 
 protocol MissedCallsViewModelOutputs {
@@ -23,7 +25,7 @@ protocol MissedCallsViewModelOutputs {
 }
 
 class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutputs {
-   
+
     var calls: CallModel? {
         didSet {
             newCalls?(calls)
@@ -69,5 +71,24 @@ class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutp
     func tapCell(index: IndexPath) {
         print("cell was tapped")
         try? self.missedCallsDelegate?.goToInfoVC(someData: calls?.requests[index.row])
+    }
+    
+    func changeNumber(string: String) -> String {
+        var returnString = string
+        returnString.insert(" ", at: returnString.index(returnString.startIndex, offsetBy: 2))
+        returnString.insert(" ", at: returnString.index(returnString.startIndex, offsetBy: 6))
+        returnString.insert("-", at: returnString.index(returnString.startIndex, offsetBy: 10))
+        
+        return returnString
+    }
+    
+    func changeDuration(duration: String) -> String {
+        var returnedDuration = ""
+        returnedDuration = duration.replacingOccurrences(of: ":00", with: "")
+        if returnedDuration.count > 5 {
+            returnedDuration = duration.replacingOccurrences(of: "00:", with: "")
+        }
+        
+        return returnedDuration
     }
 }

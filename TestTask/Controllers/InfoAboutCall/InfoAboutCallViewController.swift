@@ -29,18 +29,22 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var businessNumberLabel: UILabel!
     @IBOutlet weak var swipeIndicatorView: UIView!
     
+    var viewModel: (InfoAboutCallViewModelInputs & InfoAboutCallViewModelOutputs)?
+    
     var animationStatus = AnimationStatus.full
     var call: Request?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = InfoAboutCallViewModel()
 
         setupViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+               
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(showView))
             swipeDown.direction = .down
             self.backgroundView.addGestureRecognizer(swipeDown)
@@ -71,12 +75,26 @@ class InfoAboutCallViewController: UIViewController {
         viewUnderImage.layer.masksToBounds = true
         viewUnderImage.layer.cornerRadius = 28
         
+        var duration = ""
+        if let strongDuration = call?.duration {
+            duration = viewModel?.changeDuration(duration: strongDuration) ?? ""
+        }
+        
+        var telephone = ""
+        var bussinessNumber = ""
+        
+        if let strongTelephone = call?.client.address,
+           let strongBussinessNumber = call?.businessNumber.number {
+            telephone = viewModel?.changeNumber(telephone: strongTelephone) ?? ""
+            bussinessNumber = viewModel?.changeNumber(telephone: strongBussinessNumber) ?? ""
+        }
+        
         contactNameLabel.text = call?.client.name
-        contactAddressLabel.text = call?.client.address
-        callDurationLabel.text = call?.duration
+        contactAddressLabel.text = telephone
+        callDurationLabel.text = duration
         businessLabel.text = "Business number"
         businessNameLabel.text = call?.businessNumber.label
-        businessNumberLabel.text = call?.businessNumber.number
+        businessNumberLabel.text = bussinessNumber
     }
     
     @objc func hideView() {
