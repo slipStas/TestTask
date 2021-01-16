@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - CallModel
 class CallModel: Codable {
-    let requests: [Request]
+    var requests: [Request]
 
     init(requests: [Request]) {
         self.requests = requests

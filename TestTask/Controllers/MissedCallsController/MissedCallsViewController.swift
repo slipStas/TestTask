@@ -34,7 +34,7 @@ class MissedCallsViewController: UIViewController {
         })
         
         viewModel?.loadDataFromDevice()
-//        viewModel?.loadDataFromServer()
+        viewModel?.loadDataFromServer()
         viewModel?.missedCallsDelegate = self
     }
 
@@ -57,11 +57,23 @@ extension MissedCallsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = missedCallsTableView.dequeueReusableCell(withIdentifier: "missedCalsCell", for: indexPath) as! MissedCallsTableViewCell
         
+        let call = self.calls?.requests[indexPath.row]
+        let stringDate = call?.created
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let secDateFormatter = DateFormatter()
+        secDateFormatter.dateFormat = "HH:mm a"
+        
+        let date = dateFormatter.date(from: stringDate!)
+        
         cell.callIconImageView.image = UIImage(named: "call inbound missed")
-        cell.callDurationLabel.text = self.calls?.requests[indexPath.row].duration
-        cell.contactAddressLabel.text = self.calls?.requests[indexPath.row].client.address
-        cell.contactNameLabel.text = self.calls?.requests[indexPath.row].client.name
-        cell.dateOfCallLabel.text = self.calls?.requests[indexPath.row].created
+        cell.callDurationLabel.text = call?.duration
+        cell.contactAddressLabel.text = call?.client.address
+        cell.contactNameLabel.text = call?.client.name
+        cell.dateOfCallLabel.text = secDateFormatter.string(from: date ?? Date())
         
         cell.dataView.layer.masksToBounds = true
         cell.dataView.layer.cornerRadius = 8

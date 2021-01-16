@@ -48,6 +48,10 @@ class MissedCallsViewModel: MissedCallsViewModelInputs, MissedCallsViewModelOutp
         serverService.loadDataFromServer { [weak self] newCalls in
             guard let strongSelf = self else {return}
             
+            newCalls.requests.sort(by: {$0.created > $1.created})
+            
+            newCalls.requests.forEach {print($0.created)}
+            
             strongSelf.calls = newCalls
         }
     }

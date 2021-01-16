@@ -20,14 +20,12 @@ class DataCaretaker {
     
     func saveCalls(calls: CallModel?) throws {
         
-        print("=============save to device=============")
         let data = try JSONEncoder().encode(calls)
         try data.write(to: filePath!)
     }
     
     func loadResult() throws -> CallModel {
         
-        print("=============load from device=============")
         let data = try Data(contentsOf: filePath!)
         
         return try JSONDecoder().decode(CallModel.self, from: data)
