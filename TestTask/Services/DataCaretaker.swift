@@ -18,7 +18,7 @@ class DataCaretaker {
         return filePath.appendingPathComponent(fileName, isDirectory: false)
     }
     
-    func saveCalls(calls: CallModel) throws {
+    func saveCalls(calls: CallModel?) throws {
         
         let data = try JSONEncoder().encode(calls)
         try data.write(to: filePath!)

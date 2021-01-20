@@ -33,6 +33,7 @@ class MissedCallsViewController: UIViewController {
             strongSelf.calls = newCals
         })
         
+        viewModel?.loadDataFromDevice()
         viewModel?.loadDataFromServer()
         viewModel?.missedCallsDelegate = self
     }
@@ -56,11 +57,34 @@ extension MissedCallsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = missedCallsTableView.dequeueReusableCell(withIdentifier: "missedCalsCell", for: indexPath) as! MissedCallsTableViewCell
         
+        let call = self.calls?.requests[indexPath.row]
+        let stringDate = call?.created
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        
+        let secDateFormatter = DateFormatter()
+        secDateFormatter.dateFormat = "HH:mm a"
+        
+        let date = dateFormatter.date(from: stringDate!)
+        
+        var duration = ""
+        if let strongDuration = call?.duration {
+            duration = viewModel?.changeDuration(duration: strongDuration) ?? ""
+        }
+        
+        var telephone = ""
+        if let strongTelephone = call?.client.address {
+            
+            telephone = viewModel?.changeNumber(string: strongTelephone) ?? ""
+        }
+        
         cell.callIconImageView.image = UIImage(named: "call inbound missed")
-        cell.callDurationLabel.text = self.calls?.requests[indexPath.row].duration
-        cell.contactAddressLabel.text = self.calls?.requests[indexPath.row].client.address
-        cell.contactNameLabel.text = self.calls?.requests[indexPath.row].client.name
-        cell.dateOfCallLabel.text = self.calls?.requests[indexPath.row].created
+        cell.callDurationLabel.text = duration
+        cell.contactAddressLabel.text = telephone
+        cell.contactNameLabel.text = call?.client.name
+        cell.dateOfCallLabel.text = secDateFormatter.string(from: date ?? Date())
         
         cell.dataView.layer.masksToBounds = true
         cell.dataView.layer.cornerRadius = 8
@@ -71,8 +95,9 @@ extension MissedCallsViewController: UITableViewDataSource {
         cell.shadowView.layer.shadowOpacity = 0.1
         cell.shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
         
-        if cell.contactNameLabel.text?.count == 0 {
+        if cell.contactNameLabel.text == nil {
             cell.contactNameLabel.isHidden = true
+            cell.contactAddressLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         }
         
         return cell

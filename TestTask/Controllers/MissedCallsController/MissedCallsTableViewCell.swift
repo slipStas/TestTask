@@ -28,5 +28,13 @@ class MissedCallsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    override func prepareForReuse() {
+        
+        callIconImageView.image = nil
+        callDurationLabel.text = nil
+        contactNameLabel.text = nil
+        contactAddressLabel.text = nil
+        dateOfCallLabel.text = nil
+    }
 }

@@ -28,19 +28,24 @@ class InfoAboutCallViewController: UIViewController {
     @IBOutlet weak var businessNameLabel: UILabel!
     @IBOutlet weak var businessNumberLabel: UILabel!
     @IBOutlet weak var swipeIndicatorView: UIView!
+    @IBOutlet weak var animationConstraint: NSLayoutConstraint!
+    
+    var viewModel: (InfoAboutCallViewModelInputs & InfoAboutCallViewModelOutputs)?
     
     var animationStatus = AnimationStatus.full
     var call: Request?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel = InfoAboutCallViewModel()
 
         setupViews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-                
+               
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(showView))
             swipeDown.direction = .down
             self.backgroundView.addGestureRecognizer(swipeDown)
@@ -71,12 +76,26 @@ class InfoAboutCallViewController: UIViewController {
         viewUnderImage.layer.masksToBounds = true
         viewUnderImage.layer.cornerRadius = 28
         
+        var duration = ""
+        if let strongDuration = call?.duration {
+            duration = viewModel?.changeDuration(duration: strongDuration) ?? ""
+        }
+        
+        var telephone = ""
+        var bussinessNumber = ""
+        
+        if let strongTelephone = call?.client.address,
+           let strongBussinessNumber = call?.businessNumber.number {
+            telephone = viewModel?.changeNumber(telephone: strongTelephone) ?? ""
+            bussinessNumber = viewModel?.changeNumber(telephone: strongBussinessNumber) ?? ""
+        }
+        
         contactNameLabel.text = call?.client.name
-        contactAddressLabel.text = call?.client.address
-        callDurationLabel.text = call?.duration
+        contactAddressLabel.text = telephone
+        callDurationLabel.text = duration
         businessLabel.text = "Business number"
         businessNameLabel.text = call?.businessNumber.label
-        businessNumberLabel.text = call?.businessNumber.number
+        businessNumberLabel.text = bussinessNumber
     }
     
     @objc func hideView() {
@@ -95,8 +114,9 @@ class InfoAboutCallViewController: UIViewController {
         switch animationStatus {
         case .full:
             UIView.animate(withDuration: 0.3) {
-                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: -10, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
-                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: -10, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+                
+                self.animationConstraint.constant = 10
+                self.view.layoutIfNeeded()
             }
         default:
             break
@@ -108,8 +128,9 @@ class InfoAboutCallViewController: UIViewController {
         switch animationStatus {
         case .small:
             UIView.animate(withDuration: 0.3) {
-                self.backgroundView.frame = CGRect(x: self.backgroundView.frame.origin.x, y: 74, width: self.backgroundView.frame.width, height: self.backgroundView.frame.height)
-                self.backgroundShadowView.frame = CGRect(x: self.backgroundShadowView.frame.origin.x, y: 74, width: self.backgroundShadowView.frame.width, height: self.backgroundShadowView.frame.height)
+                
+                self.animationConstraint.constant = 85
+                self.view.layoutIfNeeded()
             }
         default:
             break

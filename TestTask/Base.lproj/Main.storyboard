@@ -60,7 +60,7 @@
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1O-uQ-vNl">
                                                                             <rect key="frame" x="0.0" y="24" width="50" height="20"/>
-                                                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -74,7 +74,7 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="16" id="YlF-8N-i9r"/>
                                                                     </constraints>
-                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -203,7 +203,6 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3Vx-sK-bDq" secondAttribute="trailing" constant="20" symbolic="YES" id="25Z-sQ-A6E"/>
                                             <constraint firstItem="L6c-i1-gQo" firstAttribute="top" secondItem="3Vx-sK-bDq" secondAttribute="bottom" constant="4" id="Enj-el-plZ"/>
-                                            <constraint firstItem="FY8-Q9-wNp" firstAttribute="top" secondItem="eTz-YR-BnU" secondAttribute="top" constant="104" id="HTr-Am-bjz"/>
                                             <constraint firstItem="L6c-i1-gQo" firstAttribute="leading" secondItem="FY8-Q9-wNp" secondAttribute="leading" id="Nmk-7U-SK4"/>
                                             <constraint firstItem="wb8-F8-Juq" firstAttribute="centerX" secondItem="eTz-YR-BnU" secondAttribute="centerX" id="SRO-UP-qxq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L6c-i1-gQo" secondAttribute="trailing" constant="20" symbolic="YES" id="XSF-si-5IN"/>
@@ -220,7 +219,6 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="eTz-YR-BnU" secondAttribute="bottom" id="4jf-ML-Eqf"/>
                                     <constraint firstAttribute="trailing" secondItem="eTz-YR-BnU" secondAttribute="trailing" id="O6F-3z-gg7"/>
-                                    <constraint firstAttribute="height" constant="202" id="ZlD-b1-pnU"/>
                                     <constraint firstItem="eTz-YR-BnU" firstAttribute="top" secondItem="BSg-bq-xOu" secondAttribute="top" id="eEg-Ox-R8C"/>
                                     <constraint firstItem="eTz-YR-BnU" firstAttribute="leading" secondItem="BSg-bq-xOu" secondAttribute="leading" id="zxg-DR-KHg"/>
                                 </constraints>
@@ -275,7 +273,7 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi0-6x-f39">
                                                 <rect key="frame" x="0.0" y="26" width="50" height="19"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="14"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -310,6 +308,7 @@
                         <constraints>
                             <constraint firstItem="h3J-Z8-aB1" firstAttribute="top" secondItem="PCm-uo-Lbo" secondAttribute="bottom" id="Bgd-q3-S1K"/>
                             <constraint firstItem="fFi-s9-Yeg" firstAttribute="trailing" secondItem="PCm-uo-Lbo" secondAttribute="trailing" id="EqX-9u-DRO"/>
+                            <constraint firstItem="wb8-F8-Juq" firstAttribute="top" secondItem="h3J-Z8-aB1" secondAttribute="bottom" constant="85" id="UEq-in-0oq"/>
                             <constraint firstItem="fFi-s9-Yeg" firstAttribute="trailing" secondItem="BSg-bq-xOu" secondAttribute="trailing" id="ZbM-Xg-2ir"/>
                             <constraint firstItem="BSg-bq-xOu" firstAttribute="leading" secondItem="fFi-s9-Yeg" secondAttribute="leading" id="gEL-cR-gxr"/>
                             <constraint firstItem="PCm-uo-Lbo" firstAttribute="top" secondItem="fFi-s9-Yeg" secondAttribute="top" id="hw8-vy-BsN"/>
@@ -321,6 +320,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DEW-BT-7h3"/>
                     <connections>
+                        <outlet property="animationConstraint" destination="UEq-in-0oq" id="qtO-27-6ec"/>
                         <outlet property="backgroundShadowView" destination="BSg-bq-xOu" id="6GH-o8-OHD"/>
                         <outlet property="backgroundView" destination="eTz-YR-BnU" id="UdM-Qn-YPi"/>
                         <outlet property="businessLabel" destination="FY8-Q9-wNp" id="2gN-2F-WaI"/>
